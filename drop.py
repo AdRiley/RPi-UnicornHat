@@ -3,15 +3,18 @@ import time
 import random
 
 uh.set_layout(uh.HAT)
-uh.brightness(1)
+uh.brightness(0.5)
 
-while True:
-	for x in range(8):
-		for y in range(8):
-			uh.set_pixel(x,y,255,215,0)
+def dropBlock(x, b):
+	for y in range(8-b):
+		uh.set_pixel(x,y,255,0,0)
+		uh.set_pixel(x,y-1,0,0,0)
 		uh.show()
-		time.sleep(0.3)
-	uh.clear()
-	uh.show()
+		time.sleep(0.1)
 
+def dropColumn(x):
+	for b in range(8):
+                dropBlock(x, b)
 
+for x in range(8):
+	dropColumn(x)
